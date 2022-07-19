@@ -1,0 +1,434 @@
+{
+    "easycom": {
+        "^u-(.*)": "p-mui/components/u-$1/u-$1.vue",
+        "^p-mui-(.*)": "p-mui/components/p-mui/p-mui-$1/p-mui-$1.vue",
+        // "^p-mui-(.*)": "@/components/p-mui/components/p-mui/p-mui-$1/p-mui-$1.vue",
+        "^pm-air-(.*)": "@/components/business/air/pm-air-$1/pm-air-$1.vue",
+        "^pm-water-(.*)": "@/components/business/water/pm-water-$1/pm-water-$1.vue",
+        "^pm-search-(.*)": "@/components/business/search/pm-search-$1/pm-search-$1.vue",
+        "^l-echart": "lime-echart/components/lime-echart/index.vue",
+        "^p-(.*)": "@/components/p-charts/packages/p-$1.vue"
+    },
+    "tabBar": {
+        "color": "#999",
+        "selectedColor": "#227cfa",
+        "backgroundColor": "#FFFFFF",
+        "borderStyle": "black",
+        "list": [
+            {
+                "pagePath": "views/app/messageBoard/MessageBoard",
+                "iconPath": "static/images/demo.png",
+                "selectedIconPath": "static/images/demo_select.png",
+                "text": "留言板"
+            },
+            {
+                "pagePath": "views/app/messageBoard/Mine",
+                "iconPath": "static/app/images/muic4.png",
+                "selectedIconPath": "static/app/images/muic4s.png",
+                "text": "我的"
+            }
+        ]
+    },
+    "pages": [
+        {
+            "path": "views/app/login",
+            "style": {
+                "navigationBarTitleText": "登录"
+            }
+        },
+        {
+            "path": "views/app/register",
+            "style": {
+                "navigationBarTitleText": "注册"
+            }
+        },
+        {
+            "path": "views/app/messageBoard/MessageBoard",
+            "style": {
+                "navigationBarTitleText": "留言板"
+            }
+        },
+        {
+            "path": "views/app/messageBoard/Mine",
+            "style": {
+                "navigationBarTitleText": "我的"
+            }
+        },
+        {
+            "path": "views/app/messageBoard/UserProfile",
+            "style": {
+                "navigationBarTitleText": "个人资料"
+            }
+        },
+        {
+            "path": "views/app/messageBoard/CreateMessage",
+            "style": {
+                "navigationBarTitleText": "新增留言"
+            }
+        },
+        {
+            "path": "views/demo/index",
+            "style": {
+                "navigationBarTitleText": "博沃-移动端ui组件"
+            }
+        },
+
+        // 业务组件
+        {
+            "path": "views/business/index",
+            "style": {
+                "navigationBarTitleText": "业务组件"
+            }
+        },
+        {
+            "path": "views/chart/index",
+            "style": {
+                "navigationBarTitleText": "图表"
+            }
+        }
+    ],
+
+    "subpackages": [
+        {
+            "root": "views/demo/pages",
+            "pages": [
+                {
+                    "path": "button",
+                    "style": {
+                        "navigationBarTitleText": "按钮"
+                    }
+                },
+                {
+                    "path": "icon",
+                    "style": {
+                        "navigationBarTitleText": "图标"
+                    }
+                },
+                {
+                    "path": "badge",
+                    "style": {
+                        "navigationBarTitleText": "badge"
+                    }
+                },
+                {
+                    "path": "cell",
+                    "style": {
+                        "navigationBarTitleText": "cell"
+                    }
+                },
+                {
+                    "path": "tag",
+                    "style": {
+                        "navigationBarTitleText": "tag 标签"
+                    }
+                },
+                {
+                    "path": "layout",
+                    "style": {
+                        "navigationBarTitleText": "layout 布局"
+                    }
+                },
+                {
+                    "path": "radio",
+                    "style": {
+                        "navigationBarTitleText": "radio 单选框"
+                    }
+                },
+                {
+                    "path": "checkbox",
+                    "style": {
+                        "navigationBarTitleText": "checkbox 多选框"
+                    }
+                },
+                {
+                    "path": "input",
+                    "style": {
+                        "navigationBarTitleText": "input 输入框"
+                    }
+                },
+                {
+                    "path": "textarea",
+                    "style": {
+                        "navigationBarTitleText": "textarea"
+                    }
+                },
+                {
+                    "path": "select",
+                    "style": {
+                        "navigationBarTitleText": "select 选择器"
+                    }
+                },
+                {
+                    "path": "switch",
+                    "style": {
+                        "navigationBarTitleText": "switch 选择器"
+                    }
+                },
+                {
+                    "path": "slider",
+                    "style": {
+                        "navigationBarTitleText": "slider 选择器"
+                    }
+                },
+                {
+                    "path": "upload",
+                    "style": {
+                        "navigationBarTitleText": "upload",
+                        "enablePullDownRefresh": true
+                    }
+                },
+                {
+                    "path": "rate",
+                    "style": {
+                        "navigationBarTitleText": "rate",
+                        "enablePullDownRefresh": true
+                    }
+                },
+                {
+                    "path": "form",
+                    "style": {
+                        "navigationBarTitleText": "form",
+                        "enablePullDownRefresh": true
+                    }
+                },
+                {
+                    "path": "search",
+                    "style": {
+                        "navigationBarTitleText": "搜索"
+                    }
+                },
+                {
+                    "path": "utable",
+                    "style": {
+                        "navigationBarTitleText": "表格"
+                    }
+                },
+                {
+                    "path": "table",
+                    "style": {
+                        "navigationBarTitleText": "滚动表格"
+                    }
+                },
+                {
+                    "path": "card",
+                    "style": {
+                        "navigationBarTitleText": "列表",
+                        "enablePullDownRefresh": true
+                    }
+                },
+                {
+                    "path": "datePicker",
+                    "style": {
+                        "navigationBarTitleText": "时间选择",
+                        "enablePullDownRefresh": true
+                    }
+                },
+                {
+                    "path": "calendar",
+                    "style": {
+                        "navigationBarTitleText": "Calendar 日历",
+                        "enablePullDownRefresh": true
+                    }
+                },
+                {
+                    "path": "tree",
+                    "style": {
+                        "navigationBarTitleText": "树形",
+                        "enablePullDownRefresh": true
+                    }
+                },
+
+                {
+                    "path": "modal",
+                    "style": {
+                        "navigationBarTitleText": "modal 模态框",
+                        "enablePullDownRefresh": true
+                    }
+                },
+                {
+                    "path": "actionsheet",
+                    "style": {
+                        "navigationBarTitleText": "actionsheet 操作栏",
+                        "enablePullDownRefresh": true
+                    }
+                },
+                {
+                    "path": "tabBar",
+                    "style": {
+                        "navigationBarTitleText": "底部导航栏",
+                        "enablePullDownRefresh": true
+                    }
+                },
+                {
+                    "path": "statelessNoMessage",
+                    "style": {
+                        "navigationBarTitleText": "暂无数据"
+                    }
+                },
+                {
+                    "path": "popCommit",
+                    "style": {
+                        "navigationBarTitleText": "提交成功"
+                    }
+                },
+                {
+                    "path": "popReason",
+                    "style": {
+                        "navigationBarTitleText": "填写意见"
+                    }
+                },
+                {
+                    "path": "popNotarize",
+                    "style": {
+                        "navigationBarTitleText": "确认"
+                    }
+                },
+                {
+                    "path": "popExplain",
+                    "style": {
+                        "navigationBarTitleText": "说明"
+                    }
+                },
+                {
+                    "path": "wrapper",
+                    "style": {
+                        "navigationBarTitleText": "wrapper"
+                    }
+                }
+            ]
+        },
+        // 气组件
+        {
+            "root": "views/business/air",
+            "pages": [
+                {
+                    "path": "airCurrentQuality",
+                    "style": {
+                        "navigationBarTitleText": "实时空气质量"
+                    }
+                },
+                {
+                    "path": "airQualityForecast",
+                    "style": {
+                        "navigationBarTitleText": "空气质量预报"
+                    }
+                },
+                {
+                    "path": "airLastHoursChange",
+                    "style": {
+                        "navigationBarTitleText": "过去24小时变化"
+                    }
+                },
+                {
+                    "path": "airCheck",
+                    "style": {
+                        "navigationBarTitleText": "考核"
+                    }
+                },
+                {
+                    "path": "airMap",
+                    "style": {
+                        "navigationBarTitleText": "空气地图"
+                    }
+                },
+                {
+                    "path": "airQualityCalendar",
+                    "style": {
+                        "navigationBarTitleText": "空气质量日历"
+                    }
+                }
+            ]
+        },
+        // 水组件
+        {
+            "root": "views/business/water",
+            "pages": [
+                {
+                    "path": "waterRiverQualityGood",
+                    "style": {
+                        "navigationBarTitleText": "城市河流水质及优良率对比"
+                    }
+                },
+                {
+                    "path": "waterCityRiverQuality",
+                    "style": {
+                        "navigationBarTitleText": "城市河流水质"
+                    }
+                },
+                {
+                    "path": "waterFractureSurface",
+                    "style": {
+                        "navigationBarTitleText": "断面水质类别"
+                    }
+                },
+                {
+                    "path": "waterCityQualityRank",
+                    "style": {
+                        "navigationBarTitleText": "城市水质排名"
+                    }
+                }
+            ]
+        },
+        // 搜索
+        {
+            "root": "views/business/search",
+            "pages": [
+                {
+                    "path": "searchCurrentTotal",
+                    "style": {
+                        "navigationBarTitleText": "当期、累计搜索"
+                    }
+                },
+                {
+                    "path": "dropDownSearch",
+                    "style": {
+                        "navigationBarTitleText": "下拉搜索"
+                    }
+                }
+            ]
+        },
+        // 列表
+        {
+            "root": "views/business/list",
+            "pages": [
+                {
+                    "path": "listCard",
+                    "style": {
+                        "navigationBarTitleText": "卡片列表"
+                    }
+                },
+                {
+                    "path": "listFromCard",
+                    "style": {
+                        "navigationBarTitleText": "表单列表"
+                    }
+                }
+            ]
+        }
+    ],
+
+    "globalStyle": {
+        "navigationBarTextStyle": "white",
+        "navigationBarTitleText": "Hello uniapp",
+        "navigationBarBackgroundColor": "#227cfa",
+        "backgroundColor": "#227cfa",
+        "mp-alipay": {
+            "titleBarColor": "#FFFFFF"
+        },
+        "app-plus": {
+            "navigationStyle": "custom",
+            "bounce": "none"
+        }
+    },
+    "condition": {
+        //模式配置，仅开发期间生效
+        "current": 0, //当前激活的模式(list 的索引项
+        "list": [
+            {
+                "name": "", //模式名称
+                "path": "", //启动页面，必选
+                "query": "" //启动参数，在页面的onLoad函数里面得到
+            }
+        ]
+    }
+}

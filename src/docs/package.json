@@ -1,0 +1,15 @@
+{
+    "name": "ApiDocs",
+    "version": "1.0.0",
+    "main": "index.js",
+    "author": "wqh",
+    "license": "MIT",
+    "devDependencies": {
+        "vuepress": "^1.7.1"
+    },
+    "scripts": {
+        "fastInstall": "yarn install",
+        "docs:dev": "vuepress dev docs",
+        "docs:build": "vuepress build docs"
+    }
+}

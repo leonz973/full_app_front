@@ -1,0 +1,146 @@
+
+
+@font-face {
+    font-family: "DIN-Medium";
+    src: url("@/static/app/fonts/DIN-Medium.woff2") format("woff2"),
+        url("@/static/app/fonts/DIN-Medium.woff") format("woff"),
+        url("@/static/app/fonts/DIN-Medium.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+.login-del{
+    position: absolute;
+    right: 69.4444rpx;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 35.4166rpx;
+    height: 35.4166rpx;
+    background: url(@/static/app/images/login_type1_del.png) 0 0 no-repeat;
+    background-size: 100%;
+}
+.login-eye{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36.111rpx;
+    height: 23.6111rpx;
+    background: url(@/static/app/images/login_type1_eye_off.png) center no-repeat;
+    background-size: 100%;
+}
+.login-eye.on{
+    background-image: url(@/static/app/images/login_type1_eye_on.png);
+}
+
+.login-checkbox{
+    display: flex;
+    align-items: center;
+}
+.login-checkbox input[type="checkbox"]{
+    display: none;
+}
+.login-checkbox i{
+    width: 31.25rpx;
+    height: 31.25rpx;
+    background: url(@/static/app/images/login_type1_check_off.png) center no-repeat;
+    background-size: 100%;
+}
+.login-checkbox span{
+    font-size: 29.1666rpx;
+    color: #666;
+    margin-left: 13.8888rpx;
+}
+.login-checkbox input[type="checkbox"]:checked~i{
+    background-image: url(@/static/app/images/login_type1_check_on.png);
+}
+.login-danwei{
+    position: absolute;
+    bottom: 52.0832rpx;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 24.9999rpx;
+    color: #aaaaaa;
+}
+.mb-login-type4{
+    padding-top: 187.5rpx;
+    height: 100%;
+    box-sizing: border-box;
+    background: url(@/static/app/images/type4_login_bg.png) center 0 no-repeat;
+    background-size: 100%;
+}
+.login-type4-logo{
+    width: 143.75rpx;
+    height: 140.9722rpx;
+    margin: 0 auto;
+    display: flex;
+}
+.login-type4-logo img{
+    width: 100%;
+    height: 100%;
+}
+.login-type4-h1{
+    font-size: 39.855rpx;
+    line-height: 111.111rpx;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 45.8333rpx;
+}
+.login-type4-form{
+    margin: 0 41.6667rpx;
+    margin-top: 69.4444rpx;
+    background-color: #fff;
+    border-radius: 20.8333rpx;
+    padding: 0 41.6667rpx;
+    padding-bottom: 69.4444rpx;
+    padding-top: 34.7222rpx;
+    box-shadow: 0 0 50.6944rpx rgba(100, 100, 100, 0.05);
+}
+.login-type4-form .item{
+    position: relative;
+    margin-bottom: 34.7222rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.login-type4-user{
+    display: block;
+    width: 100%;
+    padding-left: 69.4444rpx;
+    font-size: 34.7222rpx;
+    color: #333;
+    line-height: 99.3055rpx;
+    border-bottom: 1px solid #eee;
+    background: url(@/static/app/images/login_type2_user.png) 12.5rpx center no-repeat;
+    background-size: 27.7777rpx;
+}
+.login-type4-password{
+    display: block;
+    width: 100%;
+    padding-left: 69.4444rpx;
+    font-size: 34.7222rpx;
+    color: #333;
+    line-height: 99.3055rpx;
+    border-bottom: 1px solid #eee;
+    background: url(@/static/app/images/login_type2_pwd.png) 12.5rpx center no-repeat;
+    background-size: 27.7777rpx;
+}
+
+
+.login-type4-submit{
+    display: block;
+    width: 100%;
+    height: 90.9722rpx;
+    border-radius: 48.611rpx;
+    background-color: #3580ff;
+    font-size: 34.7222rpx;
+    color: #fff;
+    text-align: center;
+    line-height: 90.9722rpx;
+    box-shadow:  4rpx 6rpx 16rpx rgba(51, 126, 255, 0.4);
+    margin-top: 69.4444rpx;
+}
+.login-type4-submit:active{
+    background-color: #2675ff;
+}
