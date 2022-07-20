@@ -20,14 +20,25 @@
             <p-mui-card v-for="(item, idx) in commentList" :key="idx">
                 <div slot="title" class="list-title">
                     用户：{{ item.netName }}
-                    <i
+                    <!-- <i
                         :class="{
                             valid: item.status === '有效',
                             invalid: item.status === '无效',
                             wait: item.status === '待确认',
                             back: item.status === '退回'
                         }"
-                    ></i>
+                    ></i> -->
+                    <div class="card-btn">
+                        <div class="card-btn-item" @click="editMessage(item)">
+                            编辑
+                        </div>
+                        <div
+                            class="card-btn-item del"
+                            @click="deleteMessage(item)"
+                        >
+                            删除
+                        </div>
+                    </div>
                 </div>
                 <div slot="body">
                     <ul class="pd-ullst3">
@@ -40,10 +51,9 @@
 </template>
 
 <script>
-import { getCommentList, getUserInfo } from '@/api/api';
-import CreateMessageVue from './CreateMessage.vue';
+import { getCommentList, deleteMessage } from '@/api/api';
 export default {
-    name: 'listCard',
+    name: 'ownMessage',
     data() {
         return {
             commentList: [],
@@ -55,6 +65,38 @@ export default {
         this.getData();
     },
     methods: {
+        //编辑
+        editMessage(item) {
+            uni.navigateTo({
+                url: `/views/app/messageBoard/EditMessage?id=${item._id}`
+            });
+        },
+        //删除
+        deleteMessage(item) {
+            uni.showModal({
+                title: '提示',
+                content: '确定要删除吗？',
+                showCancel: true,
+                success: (r) => {
+                    if (r.confirm) {
+                        deleteMessage({
+                            id: item._id
+                        }).then((res) => {
+                            uni.showModal({
+                                title: '提示',
+                                content: '删除成功',
+                                showCancel: false,
+                                success: (r) => {
+                                    if (r.confirm) {
+                                        this.getData();
+                                    }
+                                }
+                            });
+                        });
+                    }
+                }
+            });
+        },
         loadMore() {
             //获取更多
             if (this.commentList.length >= this.total) {
@@ -69,8 +111,9 @@ export default {
         },
         getData() {
             getCommentList({
-                filterType: 1
+                filterType: 2
             }).then((res) => {
+                this.commentList = [];
                 if (res.data.length) {
                     this.commentList = res.data;
                 }
@@ -149,8 +192,38 @@ export default {
     margin: 0 10rpx;
     font-size: 28rpx;
 }
+.message-btn-group div:active {
+    background-color: #2d6ddb;
+}
 .message-btn-refresh {
 }
 .message-btn-create {
+}
+.card-btn {
+    float: right;
+    display: flex;
+    margin-top: 20rpx;
+    height: 50rpx;
+}
+.card-btn-item {
+    background-color: #eee;
+    width: 110rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    border-radius: 10rpx;
+    color: #999;
+    text-align: center;
+    margin: 0 10rpx;
+    font-size: 28rpx;
+}
+.card-btn-item:active {
+    background-color: rgb(218, 216, 216);
+}
+.card-btn-item.del {
+    background-color: #e94747;
+    color: #fff;
+}
+.card-btn-item.del:active {
+    background-color: #d14242;
 }
 </style>

@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <ul class="gx-work">
-                        <li>
+                        <li @click="openOwnMessage()">
                             <div class="zjwrap">
                                 <img
                                     src="@/static/app/images/zj1.png"
@@ -126,6 +126,12 @@ export default {
         this.userInfo = uni.getStorageSync('userInfo') || {};
     },
     methods: {
+        //跳转我的留言
+        openOwnMessage() {
+            uni.navigateTo({
+                url: '/views/app/messageBoard/OwnMessage'
+            });
+        },
         //跳转资料
         openUserProfile() {
             uni.navigateTo({

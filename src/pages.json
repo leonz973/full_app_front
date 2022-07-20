@@ -55,6 +55,12 @@
             }
         },
         {
+            "path": "views/app/messageBoard/OwnMessage",
+            "style": {
+                "navigationBarTitleText": "我的留言"
+            }
+        },
+        {
             "path": "views/app/messageBoard/UserProfile",
             "style": {
                 "navigationBarTitleText": "个人资料"
@@ -64,6 +70,12 @@
             "path": "views/app/messageBoard/CreateMessage",
             "style": {
                 "navigationBarTitleText": "新增留言"
+            }
+        },
+        {
+            "path": "views/app/messageBoard/EditMessage",
+            "style": {
+                "navigationBarTitleText": "编辑留言"
             }
         },
         {

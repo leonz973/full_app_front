@@ -2,8 +2,8 @@
 
 import axios from '@/utils/ajaxRequest.js';
 
-// let BASE_URL = 'http://localhost:3000';
-let BASE_URL = 'http://13fcbcb6.r2.vip.cpolar.cn';
+let BASE_URL = 'http://localhost:3000';
+// let BASE_URL = 'http://13fcbcb6.r2.vip.cpolar.cn';
 
 export const login = (data) => {
     return axios.request({
@@ -45,11 +45,38 @@ export const updateUserInfo = (data) => {
     });
 };
 
-//新增
+//新增留言
 export const createComment = (data) => {
     return axios.request({
         method: 'post',
         url: BASE_URL + '/comment/create',
+        data: data
+    });
+};
+
+//删除留言
+export const deleteMessage = (data) => {
+    return axios.request({
+        method: 'post',
+        url: BASE_URL + '/comment/del',
+        data: data
+    });
+};
+
+//编辑留言
+export const updateComment = (data) => {
+    return axios.request({
+        method: 'post',
+        url: BASE_URL + '/comment/update',
+        data: data
+    });
+};
+
+//获取留言详情
+export const getCommentInfo = (data) => {
+    return axios.request({
+        method: 'post',
+        url: BASE_URL + '/comment/getCommentInfo',
         data: data
     });
 };
