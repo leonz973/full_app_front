@@ -10,34 +10,19 @@
             :border-bottom="false"
         >
             <p-mui-card>
-                <view slot="title" class="from-title">个人资料</view>
+                <view slot="title" class="from-title">修改密码</view>
                 <view slot="body">
                     <u-form-item
                         label-width="150"
                         label-position="left"
                         :border-bottom="false"
-                        label="账号"
+                        label="原密码"
                         class="must-fill"
-                        prop="username"
+                        prop="oldPassword"
                     >
                         <u-input
                             placeholder="请输入"
-                            v-model="model.username"
-                            type="textarea"
-                            disabled
-                        ></u-input>
-                    </u-form-item>
-                    <u-form-item
-                        label-width="150"
-                        label-position="left"
-                        :border-bottom="false"
-                        label="昵称"
-                        class="must-fill"
-                        prop="netName"
-                    >
-                        <u-input
-                            placeholder="请输入"
-                            v-model="model.netName"
+                            v-model="model.oldPassword"
                             type="textarea"
                         ></u-input>
                     </u-form-item>
@@ -45,23 +30,29 @@
                         label-width="150"
                         label-position="left"
                         :border-bottom="false"
-                        label="性别"
+                        label="新密码"
                         class="must-fill"
-                        prop="gender"
+                        prop="newPassword"
                     >
                         <u-input
-                            placeholder="请选择"
-                            v-model="model.genderLabel"
+                            placeholder="请输入"
+                            v-model="model.newPassword"
                             type="text"
-                            disabled
-                            @click="showGender = true"
                         ></u-input>
-                        <u-select
-                            mode="single-column"
-                            v-model="showGender"
-                            :list="genderOptions"
-                            @confirm="genderConfirm"
-                        ></u-select>
+                    </u-form-item>
+                    <u-form-item
+                        label-width="170"
+                        label-position="left"
+                        :border-bottom="false"
+                        label="确认新密码"
+                        class="must-fill"
+                        prop="confirmPassword"
+                    >
+                        <u-input
+                            placeholder="请输入"
+                            v-model="model.confirmPassword"
+                            type="text"
+                        ></u-input>
                     </u-form-item>
                 </view>
             </p-mui-card>
@@ -75,77 +66,76 @@
 </template>
 
 <script>
-import { getUserInfo, updateUserInfo } from '@/api/api';
-import uPicker from '../../../components/p-mui/components/u-picker/u-picker.vue';
+import { changePassword } from '@/api/api';
+import { aesUtil } from '../../../utils/crypto/crypto.js';
 export default {
-    components: { uPicker },
-    name: 'userProfile',
+    name: 'changePassword',
     data() {
         return {
-            showGender: false, //性别选择
-            defaultGenderValue: [0],
-            genderOptions: [
-                {
-                    label: '保密',
-                    value: 0
-                },
-                {
-                    label: '男',
-                    value: 1
-                },
-                {
-                    label: '女',
-                    value: 2
-                }
-            ], //性别选择
             model: {
-                username: '',
-                netName: '',
-                gender: '',
-                genderLabel: ''
+                oldPassword: '',
+                newPassword: '',
+                confirmPassword: ''
             },
             rules: {
-                netName: [
+                oldPassword: [
                     {
                         required: true,
-                        message: '请输入昵称',
+                        message: '请输入原密码',
                         trigger: ['change', 'blur']
                     }
                 ],
-                genderLabel: [
+                newPassword: [
                     {
                         required: true,
-                        message: '请选择性别',
-                        trigger: ['change']
+                        message: '请输入新密码',
+                        trigger: ['change', 'blur']
+                    }
+                ],
+                confirmPassword: [
+                    {
+                        required: true,
+                        message: '请输入确认新密码',
+                        trigger: ['change', 'blur']
                     }
                 ]
             },
             errorType: ['message']
         };
     },
-    created() {
-        //初始化用户资料
-        getUserInfo({}).then((res) => {
-            Object.assign(this.model, res.data);
-            this.genderOptions.forEach((item) => {
-                if (item.value === res.data.gender) {
-                    this.model.genderLabel = item.label;
-                }
-            });
-        });
-    },
+    created() {},
     onReady() {
         this.$refs.uForm.setRules(this.rules);
     },
     methods: {
         submit() {
+            if (this.model.newPassword.length < 6) {
+                uni.showToast({
+                    icon: 'none',
+                    title: '密码最短为 6 个字符'
+                });
+                return;
+            }
+            if (this.model.newPassword !== this.model.confirmPassword) {
+                uni.showToast({
+                    icon: 'none',
+                    title: '两次新密码输入不一致'
+                });
+                return;
+            }
             this.$refs.uForm.validate((valid) => {
                 if (valid) {
                     console.log('验证通过');
-                    updateUserInfo({ userInfo: this.model }).then((res) => {
-                        uni.setStorageSync('userInfo', res.data.userInfo);
+                    changePassword({
+                        oldPassword: aesUtil.encryptByAESModeEBC(
+                            this.model.oldPassword
+                        ),
+                        newPassword: aesUtil.encryptByAESModeEBC(
+                            this.model.newPassword
+                        )
+                    }).then((res) => {
                         uni.showToast({
-                            title: '资料修改成功'
+                            title: '修改成功'
                         });
                         setTimeout(() => {
                             uni.navigateBack();
@@ -155,10 +145,6 @@ export default {
                     console.log('验证失败');
                 }
             });
-        },
-        genderConfirm(v) {
-            this.model.gender = v[0].value;
-            this.model.genderLabel = v[0].label;
         },
         cancel() {
             uni.navigateBack();

@@ -78,11 +78,11 @@
                     <div class="gxmy-mod" style="padding-bottom: 0">
                         <h1 class="mytit1">功能服务</h1>
                         <div class="passbox">
-                            <div class="editpass1">
+                            <div class="editpass1" @click="changePassword()">
                                 <span class="passtit eico1">修改密码</span>
                                 <span class="rgtarr"></span>
                             </div>
-                            <div class="editpass1">
+                            <div class="editpass1" @click="aboutVersion()">
                                 <span class="passtit eico2">关于版本</span>
                                 <span class="rgtarr2"></span>
                             </div>
@@ -126,6 +126,13 @@ export default {
         this.userInfo = uni.getStorageSync('userInfo') || {};
     },
     methods: {
+        //跳转修改密码
+        changePassword() {
+            uni.navigateTo({
+                url: '/views/app/messageBoard/ChangePassword'
+            });
+        },
+
         //跳转我的留言
         openOwnMessage() {
             uni.navigateTo({
@@ -144,7 +151,7 @@ export default {
                 url: '/views/app/login'
             });
         },
-        //
+        //退出
         exit() {
             uni.showModal({
                 title: '提示',
@@ -154,6 +161,13 @@ export default {
                         this.redirectToLogin();
                     }
                 }
+            });
+        },
+        //关于版本
+        aboutVersion() {
+            uni.showToast({
+                title: '当前版本：0.0.1(beta)',
+                icon: 'none'
             });
         }
     }

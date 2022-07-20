@@ -55,6 +55,12 @@
             }
         },
         {
+            "path": "views/app/messageBoard/ChangePassword",
+            "style": {
+                "navigationBarTitleText": "修改密码"
+            }
+        },
+        {
             "path": "views/app/messageBoard/OwnMessage",
             "style": {
                 "navigationBarTitleText": "我的留言"

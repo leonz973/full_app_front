@@ -37,6 +37,16 @@ export const getUserInfo = (data) => {
     });
 };
 
+//修改密码
+export const changePassword = (data) => {
+    return axios.request({
+        method: 'post',
+        url: BASE_URL + '/users/changePassword',
+        data: data
+    });
+};
+
+//修改用户资料
 export const updateUserInfo = (data) => {
     return axios.request({
         method: 'post',

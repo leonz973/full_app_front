@@ -149,6 +149,9 @@ export default {
     margin: 0 10rpx;
     font-size: 28rpx;
 }
+.message-btn-group div:active {
+    background-color: #2d6ddb;
+}
 .message-btn-refresh {
 }
 .message-btn-create {
