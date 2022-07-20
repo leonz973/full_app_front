@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { login } from '@/api/api.js';
+import { login, getUserInfo } from '@/api/api.js';
 import { aesUtil } from '../../utils/crypto/crypto.js';
 import uCheckbox from '../../components/p-mui/components/u-checkbox/u-checkbox.vue';
 export default {
@@ -72,6 +72,26 @@ export default {
                 password: ''
             }
         };
+    },
+    created() {
+        if (uni.getStorageSync('token')) {
+            getUserInfo({})
+                .then((res) => {
+                    if (res.data) {
+                        uni.reLaunch({
+                            url: '/views/app/messageBoard/MessageBoard'
+                        });
+                    }
+                })
+                .catch((err) => {
+                    if (err.status === '401') {
+                        uni.removeStorageSync('token');
+                    }
+                });
+        }
+        if(uni.getStorageSync('username')){
+            this.submitData.username = aesUtil.decryptByAESModeEBC(uni.getStorageSync('username'))
+        }
     },
     mounted() {},
     methods: {
@@ -101,6 +121,10 @@ export default {
                         title: '登录成功',
                         icon: 'none'
                     });
+                    uni.setStorageSync(
+                        'username',
+                        aesUtil.encryptByAESModeEBC(this.submitData.username)
+                    );
                     uni.setStorageSync('token', res.data.token);
                     uni.setStorageSync('userInfo', res.data.userInfo);
                     setTimeout(() => {
@@ -132,13 +156,17 @@ export default {
 }
 
 .login-register {
-    position: absolute;
-    bottom: 92rpx;
+    position: relative;
+    bottom: -350rpx;
     left: 0;
     right: 0;
     text-align: center;
     font-size: 24rpx;
     color: #3580ff;
+}
+.login-danwei {
+    position: relative;
+    bottom: -360rpx;
 }
 .login-title {
     font-size: 39.855rpx;

@@ -147,6 +147,8 @@ export default {
         },
         //跳转登录
         redirectToLogin() {
+            uni.removeStorageSync('token');
+            uni.removeStorageSync('userInfo');
             uni.redirectTo({
                 url: '/views/app/login'
             });
