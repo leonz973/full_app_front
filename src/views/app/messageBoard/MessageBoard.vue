@@ -8,30 +8,33 @@
         </div>
         <scroll-view
             scroll-y
-            style="height: 100%"
+            :style="{ height: 'calc(100vh - 190rpx)' }"
             class="main"
             @scrolltolower="loadMore"
         >
             <div class="total">
-                共有 <i>{{ total }}</i
-                >条记录
+                共有 <i>{{ commentList.length }}</i
+                >条留言
             </div>
 
             <p-mui-card v-for="(item, idx) in commentList" :key="idx">
                 <div slot="title" class="list-title">
                     用户：{{ item.netName }}
-                    <i
+                    <!-- <i
                         :class="{
                             valid: item.status === '有效',
                             invalid: item.status === '无效',
                             wait: item.status === '待确认',
                             back: item.status === '退回'
                         }"
-                    ></i>
+                    ></i> -->
                 </div>
                 <div slot="body">
                     <ul class="pd-ullst3">
                         <li>内容：{{ item.content }}</li>
+                    </ul>
+                    <ul class="body-time">
+                        <li>{{ item.update_time }}</li>
                     </ul>
                 </div>
             </p-mui-card>
@@ -86,6 +89,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.main {
+    padding-bottom: 20rpx;
+}
 .list-card {
     height: 100%;
     .total {
@@ -130,6 +136,14 @@ export default {
 }
 .pd-ullst3 li:last-child {
     margin-bottom: 0;
+}
+.body-time {
+    font-size: 24rpx;
+    height: 60rpx;
+    color: #646c7f;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 .message-btn-group {
     display: flex;

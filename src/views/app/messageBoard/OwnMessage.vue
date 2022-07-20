@@ -8,13 +8,13 @@
         </div>
         <scroll-view
             scroll-y
-            style="height: 100%"
+            :style="{ height: 'calc(100vh - 90rpx)' }"
             class="main"
             @scrolltolower="loadMore"
         >
             <div class="total">
-                共有 <i>{{ total }}</i
-                >条记录
+                共有 <i>{{ commentList.length }}</i
+                >条留言
             </div>
 
             <p-mui-card v-for="(item, idx) in commentList" :key="idx">
@@ -43,6 +43,9 @@
                 <div slot="body">
                     <ul class="pd-ullst3">
                         <li>内容：{{ item.content }}</li>
+                    </ul>
+                    <ul class="body-time">
+                        <li>{{ item.update_time }}</li>
                     </ul>
                 </div>
             </p-mui-card>
@@ -129,6 +132,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.main {
+    padding-bottom: 20rpx;
+}
 .list-card {
     height: 100%;
     .total {
@@ -225,5 +231,14 @@ export default {
 }
 .card-btn-item.del:active {
     background-color: #d14242;
+}
+
+.body-time {
+    font-size: 24rpx;
+    height: 60rpx;
+    color: #646c7f;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 </style>
