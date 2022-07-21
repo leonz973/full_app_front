@@ -2,6 +2,22 @@
 
 <template>
     <div class="list-from-card">
+        <p-mui-card>
+            <view slot="title" class="from-title">头像</view>
+            <view slot="body">
+                <u-avatar :src="avatarSrc" size="160"></u-avatar>
+                <u-gap height="20" bgColor="#fff"></u-gap>
+                <div class="btn-box">
+                    <u-button
+                        :plain="true"
+                        text="更换头像"
+                        @click="updateAvatar"
+                        >更换头像</u-button
+                    >
+                </div>
+                <u-gap height="20" bgColor="#fff"></u-gap>
+            </view>
+        </p-mui-card>
         <u-form
             :model="model"
             :rules="rules"
@@ -76,12 +92,14 @@
 
 <script>
 import { getUserInfo, updateUserInfo } from '@/api/api';
+import { BASE_URL } from '@/api/api';
 import uPicker from '../../../components/p-mui/components/u-picker/u-picker.vue';
 export default {
     components: { uPicker },
     name: 'userProfile',
     data() {
         return {
+            avatarSrc: `${BASE_URL}/images/myuser.png`, //头像地址
             showGender: false, //性别选择
             defaultGenderValue: [0],
             genderOptions: [
@@ -125,19 +143,59 @@ export default {
     },
     created() {
         //初始化用户资料
-        getUserInfo({}).then((res) => {
-            Object.assign(this.model, res.data);
-            this.genderOptions.forEach((item) => {
-                if (item.value === res.data.gender) {
-                    this.model.genderLabel = item.label;
-                }
-            });
-        });
+        this.getUserInfo();
     },
     onReady() {
         this.$refs.uForm.setRules(this.rules);
     },
     methods: {
+        //初始化用户资料
+        getUserInfo() {
+            getUserInfo({}).then((res) => {
+                Object.assign(this.model, res.data);
+                if (res.data.avatarUrl) {
+                    this.avatarSrc = `${BASE_URL}${res.data.avatarUrl}`;
+                }
+                this.genderOptions.forEach((item) => {
+                    if (item.value === res.data.gender) {
+                        this.model.genderLabel = item.label;
+                    }
+                });
+            });
+        },
+        //上传头像
+        updateAvatar() {
+            uni.chooseImage({
+                count: 1,
+                success: (imageFile) => {
+                    if (imageFile.tempFiles.length) {
+                        // console.log(imageFile);
+                        uni.uploadFile({
+                            url: BASE_URL + '/upload',
+                            filePath: imageFile.tempFilePaths[0],
+                            name: 'file',
+                            header: {
+                                Authorization:
+                                    'Bearer ' + uni.getStorageSync('token')
+                            },
+                            formData: {},
+                            success: (res) => {
+                                // console.log(res);
+                                if (res.statusCode === 200) {
+                                    uni.showToast({
+                                        title: '头像更改成功'
+                                    });
+                                    setTimeout(() => {
+                                        this.getUserInfo();
+                                    }, 500);
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        },
+        //提交
         submit() {
             this.$refs.uForm.validate((valid) => {
                 if (valid) {
@@ -156,6 +214,7 @@ export default {
                 }
             });
         },
+        //选择性别
         genderConfirm(v) {
             this.model.gender = v[0].value;
             this.model.genderLabel = v[0].label;
@@ -235,6 +294,14 @@ export default {
 
     .time-box {
         float: right;
+    }
+}
+.btn-box {
+    width: 320rpx;
+    .u-btn {
+        width: 70%;
+        height: 80rpx;
+        font-size: 28rpx;
     }
 }
 </style>

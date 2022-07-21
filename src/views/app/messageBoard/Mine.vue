@@ -6,10 +6,11 @@
             <div class="inner" style="padding-top: 0">
                 <div class="indextopbg">
                     <div class="userbox myuserbox">
-                        <img
+                        <!-- <img
                             class="userlogo"
                             src="@/static/app/images/myuser.png"
-                        />
+                        /> -->
+                        <u-avatar :src="avatarSrc" size="160"></u-avatar>
                         <div class="rf">
                             <p class="gx-name1" v-if="userInfo.username">
                                 {{ userInfo.netName }}
@@ -116,16 +117,28 @@
 </template>
 
 <script>
+import { BASE_URL, getUserInfo } from '@/api/api';
 export default {
     data() {
         return {
-            userInfo: {}
+            userInfo: {},
+            avatarSrc: `${BASE_URL}/images/myuser.png` //头像地址
         };
     },
     onShow() {
-        this.userInfo = uni.getStorageSync('userInfo') || {};
+        this.getUserInfo();
     },
     methods: {
+        //获取头像，用户名
+        getUserInfo() {
+            getUserInfo({}).then((res) => {
+                Object.assign(this.userInfo, res.data);
+                if (res.data.avatarUrl) {
+                    this.avatarSrc = `${BASE_URL}${res.data.avatarUrl}`;
+                }
+            });
+        },
+
         //跳转修改密码
         changePassword() {
             uni.navigateTo({

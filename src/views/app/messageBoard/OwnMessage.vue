@@ -29,9 +29,9 @@
                         }"
                     ></i> -->
                     <div class="card-btn">
-                        <div class="card-btn-item" @click="editMessage(item)">
+                        <!-- <div class="card-btn-item" @click="editMessage(item)">
                             编辑
-                        </div>
+                        </div> -->
                         <div
                             class="card-btn-item del"
                             @click="deleteMessage(item)"

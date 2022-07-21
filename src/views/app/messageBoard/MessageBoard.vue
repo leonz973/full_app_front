@@ -19,7 +19,14 @@
 
             <p-mui-card v-for="(item, idx) in commentList" :key="idx">
                 <div slot="title" class="list-title">
-                    用户：{{ item.netName }}
+                    用户：
+                    <div class="inline-avatar">
+                        <u-avatar
+                            :src="BASE_URL + item.avatarUrl[0]"
+                            size="50"
+                        ></u-avatar>
+                    </div>
+                    {{ item.netName }}
                     <!-- <i
                         :class="{
                             valid: item.status === '有效',
@@ -43,12 +50,13 @@
 </template>
 
 <script>
-import { getCommentList, getUserInfo } from '@/api/api';
+import { getCommentList, getUserInfo, BASE_URL } from '@/api/api';
 import CreateMessageVue from './CreateMessage.vue';
 export default {
     name: 'listCard',
     data() {
         return {
+            BASE_URL,
             commentList: [],
             pageIndex: 1,
             total: 0
@@ -169,5 +177,11 @@ export default {
 .message-btn-refresh {
 }
 .message-btn-create {
+}
+.inline-avatar {
+    display: inline-block;
+    position: relative;
+    top: 14rpx;
+    margin: 0 10rpx;
 }
 </style>
