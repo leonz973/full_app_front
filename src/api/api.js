@@ -2,8 +2,8 @@
 
 import axios from '@/utils/ajaxRequest.js';
 
-// let BASE_URL = 'http://localhost:3000';
-export const BASE_URL = 'http://20ace4a6.vip.cpolar.cn';
+// export const BASE_URL = 'http://localhost:3000';
+export const BASE_URL = 'http://free.tryzth.com:16610';
 
 export const login = (data) => {
     return axios.request({

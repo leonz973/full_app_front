@@ -178,6 +178,7 @@ export default {
                                 Authorization:
                                     'Bearer ' + uni.getStorageSync('token')
                             },
+                            timeout: 30000,
                             formData: {},
                             success: (res) => {
                                 // console.log(res);

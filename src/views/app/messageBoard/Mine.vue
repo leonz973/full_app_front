@@ -121,7 +121,9 @@ import { BASE_URL, getUserInfo } from '@/api/api';
 export default {
     data() {
         return {
-            userInfo: {},
+            userInfo: {
+                username: ''
+            },
             avatarSrc: `${BASE_URL}/images/myuser.png` //头像地址
         };
     },
@@ -133,6 +135,7 @@ export default {
         getUserInfo() {
             getUserInfo({}).then((res) => {
                 Object.assign(this.userInfo, res.data);
+                console.log(this.userInfo);
                 if (res.data.avatarUrl) {
                     this.avatarSrc = `${BASE_URL}${res.data.avatarUrl}`;
                 }
