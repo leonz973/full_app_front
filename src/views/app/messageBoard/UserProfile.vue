@@ -170,8 +170,11 @@ export default {
                 success: (imageFile) => {
                     if (imageFile.tempFiles.length) {
                         // console.log(imageFile);
+                        uni.showLoading({
+                            title: '上传中'
+                        });
                         uni.uploadFile({
-                            url: BASE_URL + '/upload',
+                            url: BASE_URL + '/uploadAvatar',
                             filePath: imageFile.tempFilePaths[0],
                             name: 'file',
                             header: {
@@ -190,6 +193,11 @@ export default {
                                         this.getUserInfo();
                                     }, 500);
                                 }
+                            },
+                            fail: (err) => {
+                                uni.showToast({
+                                    title: '头像上传失败'
+                                });
                             }
                         });
                     }
@@ -302,6 +310,7 @@ export default {
     .u-btn {
         width: 70%;
         height: 80rpx;
+        line-height: 80rpx;
         font-size: 28rpx;
     }
 }

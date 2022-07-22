@@ -40,6 +40,12 @@
                     <ul class="pd-ullst3">
                         <li>内容：{{ item.content }}</li>
                     </ul>
+                    <u-gap
+                        v-if="item.pics.length"
+                        height="30"
+                        bgColor="#fff"
+                    ></u-gap>
+                    <uAlbum :urls="item.pics"></uAlbum>
                     <ul class="body-time">
                         <li>{{ item.update_time }}</li>
                     </ul>
@@ -51,8 +57,13 @@
 
 <script>
 import { getCommentList, getUserInfo, BASE_URL } from '@/api/api';
+import uAlbum from '../components/u-album/u-album.vue';
+
 import CreateMessageVue from './CreateMessage.vue';
 export default {
+    components: {
+        uAlbum
+    },
     name: 'listCard',
     data() {
         return {

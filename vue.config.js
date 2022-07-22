@@ -20,6 +20,7 @@
 
 module.exports = {
     productionSourceMap: false,
+    transpileDependencies: ['uview-ui'],
     configureWebpack: (config) => {
         return {
             optimization: {

@@ -71,6 +71,7 @@
         "regenerator-runtime": "^0.12.1",
         "uni-app-core-js": "^1.0.0",
         "uni-app-polyfills-presets": "^1.0.0",
+        "uview-ui": "^2.0.31",
         "vue": "^2.6.11",
         "vuex": "^3.2.0",
         "weixin-js-sdk": "^1.6.0"

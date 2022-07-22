@@ -1,6 +1,7 @@
 {
     "easycom": {
         "^u-(.*)": "p-mui/components/u-$1/u-$1.vue",
+        "^vv-(.*)": "uview-ui/components/u-$1/u-$1.vue",
         "^p-mui-(.*)": "p-mui/components/p-mui/p-mui-$1/p-mui-$1.vue",
         // "^p-mui-(.*)": "@/components/p-mui/components/p-mui/p-mui-$1/p-mui-$1.vue",
         "^pm-air-(.*)": "@/components/business/air/pm-air-$1/pm-air-$1.vue",

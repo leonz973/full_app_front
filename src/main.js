@@ -13,9 +13,15 @@ dayjs.extend(isSameOrAfter);
 appVue.prototype.$dayjs = dayjs;
 
 // 引入全局uView
-import uView from 'p-mui';
+import uView1 from 'p-mui';
 // import uView from './components/p-mui';
+appVue.use(uView1);
+
+import uView from 'uview-ui';
 appVue.use(uView);
+
+import uText from 'uview-ui/components/u-text/u-text.vue';
+appVue.component(uText);
 
 // echarts图
 /* import pChart from './components/p-charts/src/index.js';
