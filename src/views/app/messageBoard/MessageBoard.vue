@@ -59,7 +59,6 @@
 import { getCommentList, getUserInfo, BASE_URL } from '@/api/api';
 import uAlbum from '../components/u-album/u-album.vue';
 
-import CreateMessageVue from './CreateMessage.vue';
 export default {
     components: {
         uAlbum

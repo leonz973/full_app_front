@@ -44,6 +44,12 @@
                     <ul class="pd-ullst3">
                         <li>内容：{{ item.content }}</li>
                     </ul>
+                    <u-gap
+                        v-if="item.pics.length"
+                        height="30"
+                        bgColor="#fff"
+                    ></u-gap>
+                    <uAlbum :urls="item.pics"></uAlbum>
                     <ul class="body-time">
                         <li>{{ item.update_time }}</li>
                     </ul>
@@ -55,8 +61,12 @@
 
 <script>
 import { getCommentList, deleteMessage } from '@/api/api';
+import uAlbum from '../components/u-album/u-album.vue';
 export default {
     name: 'ownMessage',
+    components: {
+        uAlbum
+    },
     data() {
         return {
             commentList: [],
