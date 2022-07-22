@@ -2,9 +2,16 @@
 
 <template>
     <div class="list-card">
-        <div class="message-btn-group">
-            <div class="message-btn-refresh" @click="getData">刷新</div>
-            <div class="message-btn-create" @click="createMessage">创建</div>
+        <div class="top-head">
+            <div class="top-logo">
+                <image src="@/static/logos/logo1-a0.png" alt="" class="bsic" />
+            </div>
+            <div class="message-btn-group">
+                <div class="message-btn-refresh" @click="getData">刷新</div>
+                <div class="message-btn-create" @click="createMessage">
+                    创建
+                </div>
+            </div>
         </div>
         <scroll-view
             scroll-y
@@ -193,5 +200,20 @@ export default {
     position: relative;
     top: 14rpx;
     margin: 0 10rpx;
+}
+.top-head {
+    width: 100%;
+    height: 90rpx;
+    display: flex;
+    justify-content: space-between;
+}
+.top-logo {
+    width: 50%;
+    height: 90rpx;
+    background-color: #fff;
+}
+.top-logo image {
+    width: 100%;
+    height: 100%;
 }
 </style>
